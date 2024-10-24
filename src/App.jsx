@@ -1,10 +1,18 @@
-import "./App.css";
+import { BrowserRouter } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+import { Provider } from "react-redux";
+
+import MainRoutes from "./routes/MainRoutes";
+import store from "./redux/store";
 
 function App() {
   return (
-    <>
-      <h1 className="text-3xl text-pink-700 font-bold underline">Hello world!</h1>
-    </>
+    <BrowserRouter>
+      <Provider store={store}>
+        <MainRoutes />
+        <Toaster />
+      </Provider>
+    </BrowserRouter>
   );
 }
 
