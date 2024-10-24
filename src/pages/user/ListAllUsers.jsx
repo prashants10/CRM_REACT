@@ -76,7 +76,7 @@ function ListAllUsers() {
   useEffect(() => {
     loadUsers();
   }, []);
-
+  
   return (
     <HomeLayout>
       <div className="bg-yellow-500 w-full text-black text-center text-3xl py-4 font-bold hover:bg-yellow-400 transition-all ease-in-out duration-300">
@@ -98,7 +98,7 @@ function ListAllUsers() {
           document.getElementById("my_modal_1").showModal();
         }}
       />
-      <UserDetailsModal user={user} key={user.id} resetTable={loadUsers} />
+      <UserDetailsModal user={user} key={user.email} resetTable={loadUsers} />
     </HomeLayout>
   );
 }

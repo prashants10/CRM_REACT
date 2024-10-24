@@ -62,7 +62,7 @@ function Home() {
       },
     ],
   };
-
+  
   return (
     <HomeLayout>
       {ticketState && ticketState.ticketList.length > 0 && (

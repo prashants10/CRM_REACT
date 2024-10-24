@@ -1,6 +1,5 @@
-import { useEffect } from "react";
 import { IoMenu } from "react-icons/io5";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { logout } from "../redux/slices/AuthSlice";
@@ -11,11 +10,10 @@ function HomeLayout({ children }) {
   const isLoggedIn = useSelector((store) => store.auth.isLoggedIn);
 
   const authState = useSelector((state) => state.auth);
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate("/login");
-    }
-  }, []);
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" />;
+  }
 
   const onLogout = () => {
     dispatch(logout());
@@ -52,6 +50,14 @@ function HomeLayout({ children }) {
               Dashboard
             </Link>
           </li>
+          {authState.isLoggedIn && (
+            <li>
+              <Link to="/ticket/create" className="text-lg text-white" >
+                Create Ticket
+              </Link>
+            </li>
+          )}
+
           {authState.role === "admin" && (
             <li>
               <Link to="/users" className="text-lg text-white">
@@ -84,9 +90,6 @@ function HomeLayout({ children }) {
                   >
                     Logout
                   </button>
-                  <Link className="btn-secondary px-2 py-1 rounded-md font-semibold w-full text-center text-lg">
-                    Profile
-                  </Link>
                 </>
               )}
             </div>
